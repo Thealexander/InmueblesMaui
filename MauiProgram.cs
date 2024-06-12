@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using CommunityToolkit.Maui;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using ShopApp.DataAccess;
 using ShopApp.Services;
@@ -22,6 +23,7 @@ public static class MauiProgram
 		var builder = MauiApp.CreateBuilder();
 		builder
             .UseMauiApp<App>()
+            .UseMauiCommunityToolkit()
 			.ConfigureFonts(fonts =>
 			{
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -61,6 +63,8 @@ public static class MauiProgram
         builder.Services.AddTransient<InmuebleListPage>();
         builder.Services.AddTransient<InmuebleDetailViewModel>();
         builder.Services.AddTransient<InmuebleDetailPage>();
+        builder.Services.AddTransient<InmuebleBusquedaViewModel>();
+        builder.Services.AddTransient<InmuebleBusquedaPage>();
 
 
         var dbContext = new ShopDbContext();
@@ -72,6 +76,7 @@ public static class MauiProgram
         Routing.RegisterRoute(nameof(InmuebleListPage), typeof(InmuebleListPage));
         Routing.RegisterRoute(nameof(InmuebleDetailPage), typeof(InmuebleDetailPage));
         Routing.RegisterRoute(nameof(LoginPage), typeof(LoginPage));
+        Routing.RegisterRoute(nameof(InmuebleBusquedaPage), typeof(InmuebleBusquedaPage));
 
 #if DEBUG
         builder.Logging.AddDebug();

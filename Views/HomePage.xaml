@@ -15,10 +15,12 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
+
             <VerticalStackLayout Grid.Row="0" Spacing="5">
                 <Label  Text="{Binding NombreUsuario}" FontSize="Large"/>
-                <Label  Text="En busqueda de tu lugar favorito" FontSize="Medium"/>
+                <Label  Text="Encuentra tu mejor lugar para vivir" FontSize="Medium"/>
             </VerticalStackLayout>
+
             <Frame Grid.Row="1" Padding="15">
                 <HorizontalStackLayout Spacing="20">
                     <Image Source="search_icon" 
@@ -27,12 +29,12 @@
                            WidthRequest="25"
                            />
                     <Label 
-                        Text="Finder"
+                        Text="Busqueda"
                         VerticalOptions="Center"
                         />
                 </HorizontalStackLayout>
                 <Frame.GestureRecognizers>
-                    <TapGestureRecognizer />
+                    <TapGestureRecognizer Command="{Binding TapBusquedaInmueblesCommand}"/>
                 </Frame.GestureRecognizers>
             </Frame>
             <VerticalStackLayout Grid.Row="2" Spacing="20">
@@ -40,6 +42,7 @@
                     Text="Tipos de Viviendas"
                     FontSize="Large"
                     />
+
                 <CollectionView
                     SelectionMode="Single"
                     HeightRequest="50"
@@ -61,7 +64,6 @@
                                 <Border.StrokeShape>
                                     <RoundRectangle CornerRadius="10,10,10,10"  />
                                 </Border.StrokeShape>
-
                                 <HorizontalStackLayout Spacing="5" HeightRequest="25">
                                     <Image 
                                         Aspect="AspectFit"
@@ -75,11 +77,9 @@
                                         Text="{Binding NombreCategory}"
                                         />
                                 </HorizontalStackLayout>
-
                             </Border>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
-
                 </CollectionView>
             </VerticalStackLayout>
             <VerticalStackLayout Grid.Row="3" Spacing="20">
@@ -92,7 +92,6 @@
                     SelectionMode="Single"
                     ItemsSource="{Binding FavoriteInmuebles}"
                     >
-
                     <CollectionView.ItemsLayout>
                         <LinearItemsLayout Orientation="Horizontal" ItemSpacing="20"/>
                     </CollectionView.ItemsLayout>
@@ -146,7 +145,7 @@
                             </Frame>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
-                </CollectionView>
+               </CollectionView>
             </VerticalStackLayout>
         </Grid>
     </ScrollView>

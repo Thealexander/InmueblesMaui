@@ -17,7 +17,6 @@ public class InmuebleService
         this.client = client;
         this.settings = configuration.GetRequiredSection(nameof(Settings)).Get<Settings>();
     }
-
     public async Task<List<CategoryResponse>> GetCategories()
     {
         var uri = $"{settings.UrlBase}/api/category";
@@ -69,6 +68,26 @@ public class InmuebleService
         if (!response.IsSuccessStatusCode) return false;
 
         return true;
+    }
+    public async Task<List<InmuebleResponse>> GetBookmarks()
+    {
+        var uri = $"{settings.UrlBase}/api/inmueble/bookmark";
+        client.DefaultRequestHeaders.Authorization = new
+            AuthenticationHeaderValue("bearer", Preferences.Get("accesstoken", string.Empty));
+
+        var resultado = await client.GetStringAsync(uri);
+
+        return JsonConvert.DeserializeObject<List<InmuebleResponse>>(resultado);
+    }
+    public async Task<List<InmuebleResponse>> GetBusquedaInmuebles(string inmuebleValue)
+    {
+        var uri = $"{settings.UrlBase}/api/inmueble/search/{inmuebleValue}";
+        client.DefaultRequestHeaders.Authorization = new
+            AuthenticationHeaderValue("bearer", Preferences.Get("accesstoken", string.Empty));
+
+        var resultado = await client.GetStringAsync(uri);
+
+        return JsonConvert.DeserializeObject<List<InmuebleResponse>>(resultado);
     }
 }
 

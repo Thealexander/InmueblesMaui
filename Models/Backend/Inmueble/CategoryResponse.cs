@@ -4,7 +4,7 @@ namespace ShopApp.Models.Backend.Inmueble;
 
 public class CategoryResponse
 {
-    [JsonProperty("id")]
+    [JsonProperty("id")]   
     public int Id { get; set; }
 
     [JsonProperty("nombre")]
