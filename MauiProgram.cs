@@ -43,12 +43,24 @@ public static class MauiProgram
         builder.Services.AddTransient<SummaryViewmodel>();
 		builder.Services.AddSingleton(Connectivity.Current);
 		builder.Services.AddSingleton<CompraService>();
-		builder.Services.AddSingleton<HttpClient>();
+        builder.Services.AddSingleton<InmuebleService>();
+        builder.Services.AddSingleton<HttpClient>();
 		builder.Services.AddSingleton<IDatabaseRouteService, DatabaseRouteService>();
 		builder.Services.AddDbContext<ShopOutDbContext>();
         builder.Services.AddSingleton<SecurityService>();
         builder.Services.AddTransient<LoginViewModel>();
         builder.Services.AddTransient<LoginPage>();
+
+        builder.Services.AddTransient<HomeViewModel>();
+        builder.Services.AddTransient<HomePage>();
+        builder.Services.AddTransient<BookmarkViewModel>();
+        builder.Services.AddTransient<BookmarkPage>();
+        builder.Services.AddTransient<SettingsViewModel>();
+        builder.Services.AddTransient<SettingsPage>();
+        builder.Services.AddTransient<InmuebleListViewModel>();
+        builder.Services.AddTransient<InmuebleListPage>();
+        builder.Services.AddTransient<InmuebleDetailViewModel>();
+        builder.Services.AddTransient<InmuebleDetailPage>();
 
 
         var dbContext = new ShopDbContext();
@@ -57,7 +69,9 @@ public static class MauiProgram
 
         Routing.RegisterRoute(nameof(ProductDetailPage), typeof(ProductDetailPage));
         Routing.RegisterRoute(nameof(HelpSupportDetailPage), typeof(HelpSupportDetailPage));
-
+        Routing.RegisterRoute(nameof(InmuebleListPage), typeof(InmuebleListPage));
+        Routing.RegisterRoute(nameof(InmuebleDetailPage), typeof(InmuebleDetailPage));
+        Routing.RegisterRoute(nameof(LoginPage), typeof(LoginPage));
 
 #if DEBUG
         builder.Logging.AddDebug();
